@@ -2,7 +2,7 @@
  #include <stdio.h>
  #include <conio.h>
  #include <stdlib.h>
- #include <string.h> //para usar strcatﬁ
+ #include <string.h> //para usar strcat
  #include <ctype.h>
  #include <dos.h>
  #define lmax 25
@@ -49,6 +49,8 @@ typedef struct dato {
 	struct dato *sig;
 	struct dato *ant;
 };
+
+ /* -----------------------VARIABLES GLOBALES----------------------*/
 
  struct dato *p; 	  /*puntero auxiliar*/
  struct dato *final;  /* puntero al final de la lista */
@@ -400,7 +402,7 @@ void agregar(void) {
 	gets(p->seccion);     gotoxy(x + 18,14);
 	gets(p->precio);      gotoxy(x+ 18,17);
 	gets(p->codigo);
-    Marco(13,68,19,23,1,"");//add 14 MAYO
+    Marco(13,68,19,23,0,"");//add 14 MAYO
     textcolor(RED);
 	gotoxy(x+22,21);
 	cprintf("PRODUCTO CARGADO...");
@@ -668,16 +670,18 @@ if (aux) {/* si coinciden los nombres */
 		if (op == 's') {
 		   guardado = 1;
 		   elimina(aux);
+		   textcolor(RED);
 		   gotoxy(35,22);
-		   printf("ELIMINADO...");
+		   cprintf("ELIMINADO...");
 		   getch();
 		   nleidos--;
 		   return;
 		   //aux = aux->sig;
 			} else
 			if (op == 'n')
+				textcolor(RED);
 				gotoxy(35,22);
-				printf("CANCELADO...");
+				cprintf("CANCELADO...");
 				getch();
 			return;
 			//break;
@@ -795,14 +799,14 @@ op = toupper(getch());
     case 'D': {
 	      for (;;){
 	    int bandz2=0;//13 MAYO
-		Marco(12,70,16,22,1,"ELIMINAR");//add 13 MAYO
+		Marco(11,71,17,23,0,"ELIMINAR");//add 13 MAYO
 		textcolor(0);
-		gotoxy(18,18); cprintf("Seguro que desea eliminar? ");
+		gotoxy(18,19); cprintf("Seguro que desea eliminar? ");
 		textcolor(RED); 
-		gotoxy(45,18); cprintf(p->descripcion);
+		gotoxy(45,19); cprintf(p->descripcion);
 		textcolor(15);
 	    do{
-		gotoxy(29,19); cprintf("%s%s", opcionsiono[0], opcionsiono[1]);
+		gotoxy(29,20); cprintf("%s%s", opcionsiono[0], opcionsiono[1]);
 		textcolor(WHITE);//WHITE
 		resalta5(z2);
 		siono=getch();
@@ -820,7 +824,7 @@ op = toupper(getch());
 		 if (resp == 's'){
 		   guardado = 1;
 		   elimina(p);
-		   gotoxy(35,21);
+		   gotoxy(35,22);
 		   textcolor(RED);
 		   cprintf("ELIMINADO...");
 		   getch();
@@ -829,7 +833,7 @@ op = toupper(getch());
 		   break;
 		  } else
 		 if (resp == 'n')
-		   gotoxy(35,21);
+		   gotoxy(35,22);
 		   textcolor(RED);
 		   cprintf("CANCELADO...");
 		   getch();
@@ -1155,7 +1159,7 @@ void resalta4(int z){
 void resalta5(int z2){
 	//textcolor(15);//15
 	textbackground(3);
-	gotoxy(29+(z2*12),19); cprintf("%s", opcionsiono[z2]);//gotoxy(29,11);
+	gotoxy(29+(z2*12),20); cprintf("%s", opcionsiono[z2]);//gotoxy(29,11);
 	textbackground(WHITE);//WHITE
 	textcolor(0);
 }
