@@ -43,8 +43,11 @@ char *opcionsiono[]={
 typedef struct dato {
 	char descripcion[50];
 	char marca[50];
+	char proveedor[50];
+	char procedencia[50];
 	char seccion[50];
 	char precio[50];
+	char stock[50];
 	char codigo[50];
 	struct dato *sig;
 	struct dato *ant;
@@ -389,20 +392,26 @@ void agregar(void) {
 	cprintf("\nC A R G A R   P R O D U C T O S\n");
 	textcolor(0);
 	gotoxy(x,5);  cprintf("Descripcion:     ");
-	gotoxy(x,8);  cprintf("Marca:           ");
-	gotoxy(x,11); cprintf("Seccion:         ");
-	gotoxy(x,14); cprintf("Precio Unitario: ");
-	gotoxy(x,17); cprintf("Codigo Producto: ");
+	gotoxy(x,7);  cprintf("Marca:           ");
+	gotoxy(x,9);  cprintf("Proveedor:       ");
+	gotoxy(x,11); cprintf("Procedencia:     ");
+	gotoxy(x,13); cprintf("Seccion:         ");
+	gotoxy(x,15); cprintf("Precio Unitario: ");
+	gotoxy(x,17); cprintf("Stock:           ");
+	gotoxy(x,19); cprintf("Codigo Producto: ");
 	gotoxy(x + 18,5);
 	textcolor(15);
-	gets(p->descripcion); gotoxy(x + 18,8);
-	gets(p->marca); 	  gotoxy(x + 18,11);
-	gets(p->seccion);     gotoxy(x + 18,14);
-	gets(p->precio);      gotoxy(x+ 18,17);
+	gets(p->descripcion); gotoxy(x + 18,7);
+	gets(p->marca); 	  gotoxy(x + 18,9);
+	gets(p->proveedor);   gotoxy(x + 18,11);
+	gets(p->procedencia); gotoxy(x + 18,13);
+	gets(p->seccion);     gotoxy(x + 18,15);
+	gets(p->precio);      gotoxy(x + 18,17);
+	gets(p->stock);       gotoxy(x + 18,19);
 	gets(p->codigo);
-    Marco(13,68,19,23,1,"");//add 14 MAYO
+    Marco(13,68,21,23,0,"");//add 14 MAYO
     textcolor(RED);
-	gotoxy(x+22,21);
+	gotoxy(x+22,22);
 	cprintf("PRODUCTO CARGADO...");
 	textcolor(15);
 	getch();
@@ -437,7 +446,7 @@ void modificarproducto(void){
    textcolor(RED);
    cprintf("M O D I F I C A C I O N   D E   P R O D U C T O S");
    textcolor(0);
-   gotoxy(12,6);
+   gotoxy(4,5);
    cprintf("Introduzca el codigo del producto a modificar: ");
    textcolor(15);
    gets(pcodigo);
@@ -449,17 +458,23 @@ void modificarproducto(void){
 if (aux) {/* si coinciden los nombres */
 //borde();
     textcolor(0);
-	gotoxy(15,9);  cprintf("Descripcion:     ");
-	gotoxy(15,11); cprintf("Marca:           ");
-	gotoxy(15,13); cprintf("Seccion:         ");
-	gotoxy(15,15); cprintf("Precio Unitario: ");
-	gotoxy(15,17); cprintf("Codigo producto: ");
+	gotoxy(15,7);  cprintf("Descripcion:     ");
+	gotoxy(15,9);  cprintf("Marca:           ");
+	gotoxy(15,11); cprintf("Proveedor:       ");
+	gotoxy(15,13); cprintf("Procedencia:     ");
+	gotoxy(15,15); cprintf("Seccion:         ");
+	gotoxy(15,17); cprintf("Precio Unitario: ");
+	gotoxy(15,19); cprintf("Stock:           ");
+	gotoxy(15,21); cprintf("Codigo producto: ");
     textcolor(15);
-	gotoxy(33,9);  cprintf(aux->descripcion);
-	gotoxy(33,11); cprintf(aux->marca);
-	gotoxy(33,13); cprintf(aux->seccion);
-	gotoxy(33,15); cprintf(aux->precio);
-	gotoxy(33,17); cprintf(aux->codigo);
+	gotoxy(33,7);  cprintf(aux->descripcion);
+	gotoxy(33,9);  cprintf(aux->marca);
+	gotoxy(33,11); cprintf(aux->proveedor);
+	gotoxy(33,13); cprintf(aux->procedencia);
+	gotoxy(33,15); cprintf(aux->seccion);
+	gotoxy(33,17); cprintf(aux->precio);
+	gotoxy(33,19); cprintf(aux->stock);
+	gotoxy(33,21); cprintf(aux->codigo);
 	for (;;) {
 		gotoxy(3,23);
 		cprintf("Presione (M) para modificar (ESC) para salir u otra tecla para continuar ");
@@ -546,17 +561,23 @@ void modifica(struct dato *aux) {
    textcolor(RED);
    cprintf("M O D I F I C A C I O N   D E   P R O D U C T O S");
    textcolor(0);
-   gotoxy(15,6);  cprintf("Descripcion:     ");
-   gotoxy(15,8);  cprintf("Marca:           ");
-   gotoxy(15,10); cprintf("Seccion:         ");
-   gotoxy(15,12); cprintf("Precio Unitario: ");
-   gotoxy(15,14); cprintf("Codigo Producto: ");
+   gotoxy(15,7);  cprintf("Descripcion:     ");
+   gotoxy(15,9);  cprintf("Marca:           ");
+   gotoxy(15,11); cprintf("Proveedor:       ");
+   gotoxy(15,13); cprintf("Procedencia:     ");
+   gotoxy(15,15); cprintf("Seccion:         ");
+   gotoxy(15,17); cprintf("Precio Unitario: ");
+   gotoxy(15,19); cprintf("Stock:           ");
+   gotoxy(15,21); cprintf("Codigo producto: ");
    textcolor(15);
-   gotoxy(33,6);  gets(info.descripcion);
-   gotoxy(33,8);  gets(info.marca);
-   gotoxy(33,10); gets(info.seccion);
-   gotoxy(33,12); gets(info.precio);
-   gotoxy(33,14); gets(info.codigo);
+   gotoxy(33,7);  gets(info.descripcion);
+   gotoxy(33,9);  gets(info.marca);
+   gotoxy(33,11); gets(info.proveedor);
+   gotoxy(33,13); gets(info.procedencia);
+   gotoxy(33,15); gets(info.seccion);
+   gotoxy(33,17); gets(info.precio);
+   gotoxy(33,19); gets(info.stock);
+   gotoxy(33,21); gets(info.codigo);
    for (;;) {
 	    int bandz1=0;//13 MAYO
 		Marco(14,68,17,23,1,"MODIFICAR");//add 13 MAYO
@@ -579,8 +600,11 @@ void modifica(struct dato *aux) {
        guardado = 1;
        strcpy(aux->descripcion,info.descripcion);
        strcpy(aux->marca,info.marca);
+       strcpy(aux->proveedor,info.proveedor);
+       strcpy(aux->procedencia,info.procedencia);
        strcpy(aux->seccion,info.seccion);
        strcpy(aux->precio,info.precio);
+       strcpy(aux->stock,info.stock);
        strcpy(aux->codigo,info.codigo);
        gotoxy(30,22); textcolor(RED); cprintf("CAMBIOS REALIZADOS..."); getch();
        return;
@@ -632,15 +656,21 @@ if (aux) {/* si coinciden los nombres */
     textcolor(0);
 	gotoxy(15,7);  cprintf("Descripcion:     ");
 	gotoxy(15,9);  cprintf("Marca:           ");
-	gotoxy(15,11); cprintf("Seccion:         ");
-	gotoxy(15,13); cprintf("Precio Unitario: ");
-	gotoxy(15,15); cprintf("Codigo producto: ");
+	gotoxy(15,11); cprintf("Proveedor:       ");
+	gotoxy(15,13); cprintf("Procedencia:     ");
+	gotoxy(15,15); cprintf("Seccion:         ");
+	gotoxy(15,17); cprintf("Precio Unitario: ");
+	gotoxy(15,19); cprintf("Stock:           ");
+	gotoxy(15,21); cprintf("Codigo producto: ");
 	textcolor(15);
 	gotoxy(33,7);  cprintf(aux->descripcion);
 	gotoxy(33,9);  cprintf(aux->marca);
-	gotoxy(33,11); cprintf(aux->seccion);
-	gotoxy(33,13); cprintf(aux->precio);
-	gotoxy(33,15); cprintf(aux->codigo);
+	gotoxy(33,11); cprintf(aux->proveedor);
+	gotoxy(33,13); cprintf(aux->procedencia);
+	gotoxy(33,15); cprintf(aux->seccion);
+	gotoxy(33,17); cprintf(aux->precio);
+	gotoxy(33,19); cprintf(aux->stock);
+	gotoxy(33,21); cprintf(aux->codigo);
 	//getch();
 	for (;;) {
 	    int bandz0=0;//13 MAYO
@@ -668,16 +698,18 @@ if (aux) {/* si coinciden los nombres */
 		if (op == 's') {
 		   guardado = 1;
 		   elimina(aux);
+		   textcolor(RED);
 		   gotoxy(35,22);
-		   printf("ELIMINADO...");
+		   cprintf("ELIMINADO...");
 		   getch();
 		   nleidos--;
 		   return;
 		   //aux = aux->sig;
 			} else
 			if (op == 'n')
+				textcolor(RED);
 				gotoxy(35,22);
-				printf("CANCELADO...");
+				cprintf("CANCELADO...");
 				getch();
 			return;
 			//break;
@@ -726,7 +758,7 @@ void guardar(char *fname){
  elimina_sm = 0;
  }
 
-/* --BUSCA LOS REGISTROS PARA VER, MODIFICAR, ELIMINAR O VER EL LISTADO-- */
+/* ----[BUSCA LOS REGISTROS PARA VER, MODIFICAR, ELIMINAR O VER EL LISTADO]---- */
 void listar(void){
  char op,resp;
  struct dato *p;
@@ -756,17 +788,23 @@ void listar(void){
 }
 borde();
 textcolor(0);
-gotoxy(15,6);  cprintf("Descripcion:      ");
-gotoxy(15,8);  cprintf("Marca:            ");
-gotoxy(15,10); cprintf("Seccion:         ");
-gotoxy(15,12); cprintf("Precio Unitario: ");
-gotoxy(15,14); cprintf("Codigo producto: ");
+gotoxy(15,5);  cprintf("Descripcion:     ");
+gotoxy(15,7);  cprintf("Marca:           ");
+gotoxy(15,9); cprintf("Proveedor:       ");
+gotoxy(15,11); cprintf("Procedencia:     ");
+gotoxy(15,13); cprintf("Seccion:         ");
+gotoxy(15,15); cprintf("Precio Unitario: ");
+gotoxy(15,17); cprintf("Stock:           ");
+gotoxy(15,19); cprintf("Codigo producto: ");
 textcolor(15);
-gotoxy(33,6);  cprintf(p->descripcion);
-gotoxy(33,8);  cprintf(p->marca);
-gotoxy(33,10); cprintf(p->seccion);
-gotoxy(33,12); cprintf(p->precio);
-gotoxy(33,14); cprintf(p->codigo);
+gotoxy(33,5);  cprintf(p->descripcion);
+gotoxy(33,7);  cprintf(p->marca);
+gotoxy(33,9); cprintf(p->proveedor);
+gotoxy(33,11); cprintf(p->procedencia);
+gotoxy(33,13); cprintf(p->seccion);
+gotoxy(33,15); cprintf(p->precio);
+gotoxy(33,17); cprintf(p->stock);
+gotoxy(33,19); cprintf(p->codigo);
 		textcolor(0);
 		gotoxy(1,1);
 		cprintf("    %s        %s         %s       %s",
@@ -795,14 +833,14 @@ op = toupper(getch());
     case 'D': {
 	      for (;;){
 	    int bandz2=0;//13 MAYO
-		Marco(12,70,16,22,1,"ELIMINAR");//add 13 MAYO
+		Marco(11,71,17,23,0,"ELIMINAR");//add 13 MAYO
 		textcolor(0);
-		gotoxy(18,18); cprintf("Seguro que desea eliminar? ");
+		gotoxy(18,19); cprintf("Seguro que desea eliminar? ");
 		textcolor(RED); 
-		gotoxy(45,18); cprintf(p->descripcion);
+		gotoxy(45,19); cprintf(p->descripcion);
 		textcolor(15);
 	    do{
-		gotoxy(29,19); cprintf("%s%s", opcionsiono[0], opcionsiono[1]);
+		gotoxy(29,20); cprintf("%s%s", opcionsiono[0], opcionsiono[1]);
 		textcolor(WHITE);//WHITE
 		resalta5(z2);
 		siono=getch();
@@ -820,7 +858,7 @@ op = toupper(getch());
 		 if (resp == 's'){
 		   guardado = 1;
 		   elimina(p);
-		   gotoxy(35,21);
+		   gotoxy(35,22);
 		   textcolor(RED);
 		   cprintf("ELIMINADO...");
 		   getch();
@@ -829,7 +867,7 @@ op = toupper(getch());
 		   break;
 		  } else
 		 if (resp == 'n')
-		   gotoxy(35,21);
+		   gotoxy(35,22);
 		   textcolor(RED);
 		   cprintf("CANCELADO...");
 		   getch();
@@ -893,17 +931,23 @@ void buscarnombre(void) {
 if (aux) {/* si coinciden los nombres */
 //borde();
     textcolor(0);
-	gotoxy(15,9);  cprintf("Descripcion:     ");
-	gotoxy(15,11); cprintf("Marca:           ");
-	gotoxy(15,13); cprintf("Seccion:         ");
-	gotoxy(15,15); cprintf("Precio Unitario: ");
-	gotoxy(15,17); cprintf("Codigo producto: ");
+	gotoxy(15,6);  cprintf("Descripcion:     ");
+	gotoxy(15,8);  cprintf("Marca:           ");
+	gotoxy(15,10); cprintf("Proveedor:       ");
+	gotoxy(15,12); cprintf("Procedencia:     ");
+	gotoxy(15,14); cprintf("Seccion:         ");
+	gotoxy(15,16); cprintf("Precio Unitario: ");
+	gotoxy(15,18); cprintf("Stock:           ");
+	gotoxy(15,20); cprintf("Codigo producto: ");
 	textcolor(15);
-	gotoxy(33,9);  cprintf(aux->descripcion);
-	gotoxy(33,11); cprintf(aux->marca);
-	gotoxy(33,13); cprintf(aux->seccion);
-	gotoxy(33,15); cprintf(aux->precio);
-	gotoxy(33,17); cprintf(aux->codigo);
+	gotoxy(33,6);  cprintf(aux->descripcion);
+	gotoxy(33,8);  cprintf(aux->marca);
+	gotoxy(33,10); cprintf(aux->proveedor);
+	gotoxy(33,12); cprintf(aux->procedencia);
+	gotoxy(33,14); cprintf(aux->seccion);
+	gotoxy(33,16); cprintf(aux->precio);
+	gotoxy(33,18); cprintf(aux->stock);
+	gotoxy(33,20); cprintf(aux->codigo);
 	for (;;) {
 		gotoxy(15,23);
 		cprintf("Presione (ESC) para salir u otra tecla para continuar ");
@@ -979,17 +1023,23 @@ void buscarcodigo(void){
 if (aux) {/* si coinciden los nombres */
 //borde();
     textcolor(0);
-	gotoxy(15,9);  cprintf("Descripcion:     ");
-	gotoxy(15,11); cprintf("Marca:           ");
-	gotoxy(15,13); cprintf("Seccion:         ");
-	gotoxy(15,15); cprintf("Precio Unitario: ");
-	gotoxy(15,17); cprintf("Codigo producto: ");
+	gotoxy(15,6);  cprintf("Descripcion:     ");
+	gotoxy(15,8);  cprintf("Marca:           ");
+	gotoxy(15,10); cprintf("Proveedor:       ");
+	gotoxy(15,12); cprintf("Procedencia:     ");
+	gotoxy(15,14); cprintf("Seccion:         ");
+	gotoxy(15,16); cprintf("Precio Unitario: ");
+	gotoxy(15,18); cprintf("Stock:           ");
+	gotoxy(15,20); cprintf("Codigo producto: ");
 	textcolor(15);
-	gotoxy(33,9);  cprintf(aux->descripcion);
-	gotoxy(33,11); cprintf(aux->marca);
-	gotoxy(33,13); cprintf(aux->seccion);
-	gotoxy(33,15); cprintf(aux->precio);
-	gotoxy(33,17); cprintf(aux->codigo);
+	gotoxy(33,6);  cprintf(aux->descripcion);
+	gotoxy(33,8);  cprintf(aux->marca);
+	gotoxy(33,10); cprintf(aux->proveedor);
+	gotoxy(33,12); cprintf(aux->procedencia);
+	gotoxy(33,14); cprintf(aux->seccion);
+	gotoxy(33,16); cprintf(aux->precio);
+	gotoxy(33,18); cprintf(aux->stock);
+	gotoxy(33,20); cprintf(aux->codigo);
 	for (;;) {
 		gotoxy(15,23);
 		cprintf("Presione (ESC) para salir u otra tecla para continuar ");
@@ -1155,7 +1205,7 @@ void resalta4(int z){
 void resalta5(int z2){
 	//textcolor(15);//15
 	textbackground(3);
-	gotoxy(29+(z2*12),19); cprintf("%s", opcionsiono[z2]);//gotoxy(29,11);
+	gotoxy(29+(z2*12),20); cprintf("%s", opcionsiono[z2]);//gotoxy(29,11);
 	textbackground(WHITE);//WHITE
 	textcolor(0);
 }
@@ -1242,5 +1292,3 @@ window (1,1,80,25);
 	cout<<"ING. INFORMATICA 2016";
 	textbackground(15);
 }
-
-
