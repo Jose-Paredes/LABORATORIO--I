@@ -1,0 +1,23 @@
+commit a69d6aa6136693c4a26d7cc39f4f9f4ca2b1a145
+Author: Jose Paredes <joseparedespy@icloud.com>
+Date:   Sun May 15 17:51:41 2016 -0400
+
+    Identificaciones de variables
+
+commit e16c2d9de47afea4d6b442450fdc8be2cc9d1983
+Author: Jose Paredes <joseparedespy@icloud.com>
+Date:   Sun May 15 16:46:17 2016 -0400
+
+    Se agrego nuevos parametros a la estructura(PRO-4.CPP)
+
+commit c22574c9f46ea209587fd7cba3ae32571876f80d
+Author: Jose Paredes <joseparedespy@icloud.com>
+Date:   Sat May 14 22:00:47 2016 -0400
+
+    Se elimino la barra de carga de los modulos 'buscar producto por codigo o nombre'
+
+commit 7ab1ca97852e1d5b3897d77c3a79ce39fbbfa70a
+Author: Jose Paredes <joseparedespy@icloud.com>
+Date:   Sat May 14 18:14:03 2016 -0400
+
+    PROYECTO PARA LABORATORIO I
