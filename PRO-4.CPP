@@ -59,6 +59,7 @@ typedef struct dato {
  int guardado = 0; 	  /* revisa si se ha modificado cambios en la lista */
  int nleidos = 0; 	  /* representa la cantidad de elementos presentes en la lista */
  int elimina_sm = 0;  /* elimina el archivo creado si no se han hecho modificaciones */
+ 
 
 
  /* -----------------------PROTOTIPO DE LAS FUNCIONES----------------------*/
@@ -389,7 +390,7 @@ void menu2(char *fname){
 				else if(y==2){ desarrollo(); break;}
 				else if(y==3){ band=1;break;}
 		}
-	}while(band!=1);
+	} while(band!=1);
 	//return;
 	revisa(fname);
 }
@@ -397,12 +398,10 @@ void menu2(char *fname){
   /* --------------------PIDE LOS DATOS DEL REGISTRO NUEVO----------------- */
 void agregar(void) {
 	int y,x,Y=0;
-
 	y = 7;
 	x = y + 2;
-
 	guardado=1;
-	nleidos++;
+	//nleidos++;
 	p = new(struct dato);
 	fflush(stdin); /* vacia el buffer del archivo stdin */
 	borde();
@@ -432,16 +431,45 @@ void agregar(void) {
 	gets(p->procedencia); gotoxy(x + 18,13);
 	gets(p->seccion);     gotoxy(x + 18,15);
 	gets(p->precio);      gotoxy(x + 18,17);
-	gets(p->stock);       gotoxy(x + 18,19);
-	gets(p->codigo);
-    Marco(13,68,21,23,0,"");//add 14 MAYO
-    textcolor(RED);
-	gotoxy(x+22,22);
-	cprintf("PRODUCTO CARGADO...");
-	gotoxy(80,25);
-	textcolor(15);
-	getch();
-	inserta_reg(p);
+	gets(p->stock); 
+
+	struct dato *aux; //add 18 MAYO
+	aux = inicio;
+	int bandcodigo, bandcodigo2=0;
+	do{
+		bandcodigo=0;
+		gotoxy(x + 18,19); gets(p->codigo); //lee el codigo ingresado por el usuario
+		do{
+			if(strcmp(p->codigo,aux->codigo)==0){ //compara los codigos
+				bandcodigo=1; //activa la bandera si los codigos son iguales
+				aux=inicio; //vuelve a iniciar aux en inicio para poder salir del ciclo
+			} else {
+				aux=aux->sig; //pasa al siguiente nodo, para seguir comparando los codigos
+			}
+		}while(aux != inicio);
+	if(bandcodigo!=1){ //si el codigobandera no se activo
+		    Marco(13,68,21,23,0,"");//add 14 MAYO
+		    textcolor(RED);
+			gotoxy(x+22,22);
+			cprintf("PRODUCTO CARGADO...");
+			nleidos++; //aumenta en 1 la cantidad de productos registrados
+			bandcodigo2=1; //activa el codigobandera2 para salir del 1er. bucle
+			gotoxy(80,25);
+			textcolor(15);
+			getch();
+			inserta_reg(p);
+		}else {
+			Marco(13,68,21,23,0,"");//add 14 MAYO
+		    textcolor(RED);
+			gotoxy(x+19,22);
+		    cprintf("EL CODIGO YA FU UTILIZADO...");
+		    gotoxy(80,25);
+			textcolor(15);
+			getch();
+		    gotoxy(x+18,19); cprintf("       ");
+		    gotoxy(x+19,22); cprintf("                             ");
+		}
+	}while(bandcodigo2!=1);	 
 }
 
 /* --------------------MODIFICA LOS DATOS DEL REGISTRO----------------- */
@@ -556,10 +584,10 @@ struct dato *localiza(char nombre[]) {
  return (aux = NULL);
  }
 
-
+/****************[LOCALIZA2 OPCIONES]*****************/
 struct dato *localiza2(char pcodigo[]) {
 struct dato *aux;
-register char temp2[50];
+register char temp2[50];//registramos la variable para tener un acceso con mayor velocidad
 char temp1[50];
 
 aux = inicio;
@@ -570,12 +598,13 @@ strcpy(temp2,aux->codigo); //copia el codigo actual a temp2
 if (!strcmp(temp1,temp2)) //[COMPARA]si la funcion strcmp devuelve [0] los codigos son iguales
 return (aux);
 else
-aux = aux->sig;
+aux = aux->sig;//avanza, para comparar con el siguiente codigo
 }while (aux != inicio);
 
 return (aux = NULL);
 }
 
+/****************[FUNCION MODIFICA]*****************/
 void modifica(struct dato *aux) {
  struct dato info;
 
@@ -1130,7 +1159,7 @@ if (aux) {/* si coinciden los nombres */
   return(temp);
  }
 
-/****************[ELIMINA OPCION]*****************/
+/**********-----[ELIMINA OPCION]------************/
 void elimina(struct dato *aux) {
   struct dato *q;
 
@@ -1140,11 +1169,11 @@ void elimina(struct dato *aux) {
   free(aux);
  }
 
- /* ------REVISA SI SE HAN HECHO CAMBIOS EN LOS REGISTROS DE LA LISTA----- */
+ /* ------[REVISA SI SE HAN HECHO CAMBIOS EN LOS REGISTROS DE LA LISTA]----- */
 
 void revisa(char *fname) {
  char op;
- int y=3, bandz4=0, z4=0, siono;
+ int y=3,siono;
 
  for (;;) {
   if (guardado == 1) {
@@ -1155,37 +1184,22 @@ void revisa(char *fname) {
 		menuBarra2[0],menuBarra2[1],menuBarra2[2],menuBarra2[3]);
 		textcolor(WHITE);//ADD 29 /0/
 		resalta2(y); //envia el parametro y que inicializado en 0
-    Marco(12,69,10,16,1,"");//add 14 MAYO--10-16
-    gotoxy(14,12);
-    cprintf("LA LISTA SE HA MODIFICADO, DESEA GUARDAR LOS CAMBIOS ?");
-    do{
-	gotoxy(29,13); cprintf("%s%s", opcionsiono[0], opcionsiono[1]);
-	textcolor(WHITE);//WHITE
-	resalta7(z4);
-	gotoxy(80,25);
-	siono=getch();
-	switch(siono){
-		case 75: if(z4==0) z4=1; else z4--; break;
-		case 77: if(z4==1) z4=0; else z4++; break;
-		case 13: if(z4==0){
-					op='s'; bandz4=1;
-				} else{
-					op='n'; bandz4=1;}
-	 }
-	}while(bandz4!=1);
-    //op = tolower(getch());
-    if (op == 's' || op == 'S'){
+    Marco(9,76,10,16,1,"");//add 14 MAYO--10-16
+    gotoxy(11,12);
+    cprintf("LA LISTA SE HA MODIFICADO, DESEA GUARDAR LOS CAMBIOS ? [SI/NO]");
+    op = tolower(getch());
+    if (op == 's'){
      textcolor(RED); gotoxy(31,15); cprintf("CAMBIOS GUARDADOS..."); gotoxy(80,25); getch();
      guardar(fname);
-   }else if (op == 'n' || op == 'N') {
+   }else if (op == 'n') {
       if (elimina_sm == 1)
 	  textcolor(RED); gotoxy(31,15); cprintf("CAMBIOS CANCELADOS..."); gotoxy(80,25); getch();
-       remove(fname);
+      remove(fname);
       return;
      }
    } else {
-    if (elimina_sm == 1)
-     remove(fname);
+    //if (elimina_sm == 1)
+     //remove(fname);
     return;
    }
   } /* fin de bucle infinito (for(;;)) */
