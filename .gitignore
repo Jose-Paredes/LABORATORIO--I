@@ -1,0 +1,6 @@
+$ cat .gitignore 
+# ignorar los archivos que coincidan con los siguientes patrones 
+
+~* 
+*.obj
+*.bak
