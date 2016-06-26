@@ -1,3 +1,4 @@
+//Programado en SublimeText3 y compilado en TurboC++
  #include <iostream.h>
  #include <stdio.h>
  #include <conio.h>
