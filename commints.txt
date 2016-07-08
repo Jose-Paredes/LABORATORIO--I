@@ -1,20 +1,20 @@
-commit a69d6aa6136693c4a26d7cc39f4f9f4ca2b1a145
+commit d66d6a762e0c65071776e6b3eba05cc2509c3e05
 Author: Jose Paredes <joseparedespy@icloud.com>
-Date:   Sun May 15 17:51:41 2016 -0400
+Date:   Thu May 19 00:01:34 2016 -0400
 
-    Identificaciones de variables
+    Se corrigio un bug que permitia cargar diferentes registros utilizando el mismo id codigo
 
-commit e16c2d9de47afea4d6b442450fdc8be2cc9d1983
+commit 89cd92052c404ecb066343c531fac7eda472e141
 Author: Jose Paredes <joseparedespy@icloud.com>
-Date:   Sun May 15 16:46:17 2016 -0400
+Date:   Tue May 17 01:20:15 2016 -0400
 
-    Se agrego nuevos parametros a la estructura(PRO-4.CPP)
+    Modifique la interfaz de varios modulos, corregi gotoxys fuera de lugar, se agrego un about del programa. Esta seria la version 1.0 del proyecto
 
-commit c22574c9f46ea209587fd7cba3ae32571876f80d
+commit 7093f3e5ee9abfa12f289e2cac87313526455a4c
 Author: Jose Paredes <joseparedespy@icloud.com>
-Date:   Sat May 14 22:00:47 2016 -0400
+Date:   Sun May 15 20:11:51 2016 -0400
 
-    Se elimino la barra de carga de los modulos 'buscar producto por codigo o nombre'
+    Se agrego el archivo PRO-4.CPP al repositorio
 
 commit 7ab1ca97852e1d5b3897d77c3a79ce39fbbfa70a
 Author: Jose Paredes <joseparedespy@icloud.com>
